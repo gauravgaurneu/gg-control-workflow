@@ -1,0 +1,18 @@
+name: matrix demo
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: action/checkout@v3
+      - name: install nodeJs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: install dependencies
+        run: npm ci
+      - name: build project 
+        run: npm run build
+  
+  
