@@ -2,14 +2,18 @@ name: matrix demo
 on: push
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12,14,16]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Get code
         uses: actions/checkout@v4
       - name: install nodeJs
         uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: ${{matrix.node-version}}
       - name: install dependencies
         run: npm ci
       - name: build project 
