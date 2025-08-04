@@ -1,5 +1,11 @@
 name: reusable 
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      artifact-name: 
+        description: name of artifact
+        default: dist
+        type: string
 jobs:
   deploy:
     runs-on: ubuntu-latest
